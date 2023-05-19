@@ -1,0 +1,12 @@
+name: CI
+on: 
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  Lint:
+    # Lint 任务
+  UnitTest:
+    # 单元测试任务
+ 
