@@ -10,6 +10,8 @@ export {
     SButton
 }
 
+
+
 // 编写一个插件，通过install方法来注册组件
 export default {
     install(app: App): void {
