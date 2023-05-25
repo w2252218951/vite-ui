@@ -1,31 +1,12 @@
-name: Publish Smarty-ui-vite To Npm  # 工作流程的名称
-
-on:
-  push:  # 当有推送操作时触发工作流程
-    branches: [publish-smarty-ui-vite]  # 仅在 "publish-smarty-ui-vite" 分支上触发
-
+name: CI
+on: 
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 jobs:
-  publish:  # 定义一个作业
-    runs-on: ubuntu-latest  # 在最新的 Ubuntu 环境上运行作业
-
-    name: "publish npm"  # 作业的名称
-
-    environment: npm  # 指定作业的运行环境为 npm
-
-    steps:  # 定义作业的步骤
-      - uses: actions/checkout@master  # 使用 GitHub 提供的 actions/checkout 动作，用于检出代码库到工作目录
-      - uses: pnpm/action-setup@v2.1.0  # 使用 pnpm/action-setup 动作，用于设置 pnpm
-        with:
-          version: 6.31.0  # 指定 pnpm 的版本为 6.31.0
-      - name: Install modules  # 步骤的名称为 "Install modules"
-        run: pnpm install  # 执行命令，安装依赖模块
-      - name: Build  # 步骤的名称为 "Build"
-        run: cd packages/smarty-ui-vite && npm run build  # 进入 packages/smarty-ui-vite 目录，并执行 npm run build 命令进行构建
-      - name: "Publish to the npm registry"  # 步骤的名称为 "Publish to the npm registry"
-        uses: primer/publish@3.0.0  # 使用 primer/publish 动作，用于发布到 npm 注册表
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 设置环境变量 GITHUB_TOKEN 为 GitHub 令牌，用于认证与 GitHub 相关的操作
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # 设置环境变量 NPM_AUTH_TOKEN 为 NPM 认证令牌，用于认证与 NPM 相关的操作
-        with:
-          default_branch: "publish"  # 指定默认分支为 "publish"
-          dir: "packages/smarty-ui-vite"  # 指定要发布的目录为 "packages/smarty-ui-vite"
+  Lint:
+    # Lint 任务
+  UnitTest:
+    # 单元测试任务
+ 
